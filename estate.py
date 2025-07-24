@@ -5,12 +5,12 @@ from base import BaseClass
 
 
 class EstateAbstract(BaseClass):
-    def __init__(self, user, area, room_count, built_year, regon, address, *args, **kwargs):
+    def __init__(self, user, area, room_count, built_year, region, address, *args, **kwargs):
         self.user = user
         self.area = area
         self.room_count = room_count
         self.built_year = built_year
-        self.regon = regon
+        self.regon = region
         self.address = address
 
         super().__init__(*args, **kwargs)
@@ -30,8 +30,9 @@ class Apartment(EstateAbstract):
         self.floor = floor
 
         super().__init__(*args, **kwargs)
+
     def show_description(self):
-        print(f"Apartment{self.id}")
+        print(f"Apartment:  {self.id}")
 
 
 #craet house class and add special option
@@ -44,12 +45,14 @@ class House(EstateAbstract):
 
         super().__init__(*args, **kwargs)
     def show_description(self):
-        print(f"House{self.id}")
+        print(f"House:  {self.id}")
 
 
-#
+#I added a shop to see the property listing.
+
+
 class Store(EstateAbstract):
 
 
     def show_description(self):
-        print(f"Store{self.id}")
+        print(f"Store:  {self.id}")
