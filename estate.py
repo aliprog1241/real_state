@@ -38,11 +38,18 @@ class Apartment(EstateAbstract):
 
 class House(EstateAbstract):
     def __init__(self,has_yard, floors_count,  *args, **kwargs):
-        
+
         self.has_yard =has_yard
         self.floors_count = floors_count
 
         super().__init__(*args, **kwargs)
+    def show_description(self):
+        print(f"House{self.id}")
 
+
+#
 class Store(EstateAbstract):
-    pass
+
+
+    def show_description(self):
+        print(f"Store{self.id}")
