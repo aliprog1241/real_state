@@ -56,3 +56,7 @@ if __name__ =="__main__":
     )
 
     house_sell.show_detail()
+
+    print(ApartmentSell.objects_list)
+    print(house_sell.objects_list)
+    print(User.objects_list)
