@@ -10,7 +10,7 @@ class EstateAbstract(BaseClass):
         self.area = area
         self.room_count = room_count
         self.built_year = built_year
-        self.regon = region
+        self.region = region
         self.address = address
 
         super().__init__(*args, **kwargs)
@@ -21,7 +21,7 @@ class EstateAbstract(BaseClass):
     def show_description(self):
         pass
 
-#creat Apartment class and add some sepecial option
+#creat Apartment class and add some special option
 
 class Apartment(EstateAbstract):
     def __init__(self, has_elevator, has_parking, floor,  *args, **kwargs):

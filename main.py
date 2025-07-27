@@ -2,6 +2,8 @@ from random import choice
 from user import User
 from estate import Apartment,House,Store
 from region import Region
+from advertisment import ApartmentSell
+
 
 #creat information for customer
 
@@ -12,6 +14,7 @@ MOBILES = ['09199983035', '09196696504', '09159228564', '09128464401', '09121112
 #prints information for customer
 if __name__ =="__main__":
     for mobile in MOBILES:
+
         User (choice(FIRST_NAME), choice(LAST_NAME), mobile)
     for user in User.object_list:
         print(f"{user.id}\t {user.fullname}")
@@ -33,4 +36,12 @@ if __name__ =="__main__":
 
     )
     store.show_description()
-    
+
+
+    #creat advertisment :
+
+    apartment_sell = ApartmentSell(user= User.object_list[0], area=80, room_count=2, built_year=1380,
+    has_elevator=True, has_parking=True, floor=2, region=reg1, address = "shahrak Enghelab" ,
+    price_per_meters=10, discountable=True,  convertable=False )
+
+    print(apartment_sell.show_price())
