@@ -1,16 +1,15 @@
-#import ABC for easy OOP
+from abc import ABC
 
-from abc import ABC 
-
-
-import uuid
 
 #creat BaseClass
-
-class BaseClass:
+class BaseClass(ABC):
     _id = 0
-    def __init__(self):
+    objects_list = list()
+
+    def __init__(self, *args, **kwargs):
         self.id = self.generate_id()
+        self.store(self)
+        super().__init__(*args, **kwargs)
 
     @classmethod
     def generate_id(cls):
@@ -19,6 +18,6 @@ class BaseClass:
 
 
     @classmethod
-    def store (cls, obj):
-        cls.object_list.append(obj)
+    def store(cls, obj):
+        cls.objects_list.append(obj)
     
