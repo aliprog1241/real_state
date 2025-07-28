@@ -8,7 +8,9 @@ class ApartmentSell(BaseClass, Apartment, Sell):
         self.show_description()
         self.show_price()
 
-class ApartmentRent(Apartment, Rent):
+
+
+class ApartmentRent(BaseClass, Apartment, Rent):
     pass
 
 
@@ -18,7 +20,7 @@ class HouseSell(BaseClass, House, Sell):
         self.show_price()
 
 
-class HouseRent(House, Rent):
+class HouseRent(BaseClass, House, Rent):
     pass
 
 

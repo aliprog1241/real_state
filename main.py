@@ -1,8 +1,10 @@
 from random import choice
+from re import search
+
 from user import User
 from estate import Apartment, House, Store
 from region import Region
-from advertisment import ApartmentSell, HouseSell
+from advertisment import ApartmentSell, HouseSell, ApartmentRent, HouseRent
 
 #creat information for customer
 
@@ -22,6 +24,7 @@ if __name__ =="__main__":
 
 
     reg1 =Region(name='R1')
+    # reg2 =Region(name='R2')
     apt1 = Apartment(user= User.objects_list[0], area=80, room_count=2, built_year=1380,
                      has_elevator=True, has_parking=True, floor=2, region=reg1, address = "shahrak Enghelab"
                      )
@@ -49,6 +52,17 @@ if __name__ =="__main__":
 
     apartment_sell.show_detail()
 
+    apartment_rent = ApartmentRent(user=User.objects_list[0], area=80, room_count=2, built_year=1380, region=reg1, address="shahrak Enghelab",
+        has_elevator=True, has_parking=True, floor=2, convertable=False,initial_price=100, monthly_price=30 ,
+
+    )
+
+    house_rent = HouseRent(has_yard=True, floors_count=2, user=User.objects_list[2],
+        area=400, room_count=4, built_year=1345, region=reg1, address="shahrak Enghelab",
+        convertable=False,initial_price=300, monthly_price=10
+
+    )
+
     house_sell = HouseSell(
         has_yard=True, floors_count=2, user=User.objects_list[2],
         area=400, room_count=4, built_year=1345, region=reg1, address="shahrak Enghelab",
@@ -57,6 +71,5 @@ if __name__ =="__main__":
 
     house_sell.show_detail()
 
-    print(ApartmentSell.objects_list)
-    print(house_sell.objects_list)
-    print(User.objects_list)
+    search_result = ApartmentSell.manager.search(region=reg1)
+    print("resul:", search_result)
