@@ -1,6 +1,4 @@
 from random import choice
-from re import search
-
 from user import User
 from estate import Apartment, House, Store
 from region import Region
@@ -23,8 +21,9 @@ if __name__ =="__main__":
 
 
 
-    reg1 =Region(name='R1')
+    reg1 = Region(name='R1')
     # reg2 =Region(name='R2')
+
     apt1 = Apartment(user= User.objects_list[0], area=80, room_count=2, built_year=1380,
                      has_elevator=True, has_parking=True, floor=2, region=reg1, address = "shahrak Enghelab"
                      )
@@ -71,5 +70,12 @@ if __name__ =="__main__":
 
     house_sell.show_detail()
 
-    search_result = ApartmentSell.manager.search(region=reg1)
-    print("resul:", search_result)
+
+print("result:", ApartmentSell.manager.search(region=reg1))
+print("result:", ApartmentSell.manager.search(room_count=2))
+print("result price:", ApartmentSell.manager.search(price_per_meters__max=8))
+
+
+print("result:", HouseSell.manager.search(region=reg1))
+print("result:", HouseSell.manager.search(floor_count=2))
+

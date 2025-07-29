@@ -7,11 +7,34 @@ class Manager:
         return f'manager {self._class}'
 
     def search(self, **kwargs):
-        results = list()
+        results = []
         for key, value in kwargs.items():
+            # for minimum and maximum:
+            if key.endswith('__min'):
+                key = key[:-5]
+                compare_key = 'min'
+
+
+            elif key.endswith('__max'):
+                key = key[:-5]
+                compare_key = 'max'
+
+            else:
+                compare_key = 'equal'
+
+
             for obj in self._class.objects_list:
-                if hasattr(obj, key) and getattr(obj, key) == value:
-                    results.append(obj)
+                if hasattr(obj, key):
+
+                    if compare_key == 'min':
+                        result = bool(getattr(obj, key) >= value)
+                    elif compare_key == 'max':
+                        result = bool(getattr(obj, key) <= value)
+                    else:
+                        result = bool(getattr(obj, key) == value)
+
+                    if result:
+                        results.append(obj)
 
         return results
 
