@@ -1,6 +1,4 @@
-from base import BaseClass
 from abc import ABC
-
 
 class Sell(ABC):
     def __init__(self, price_per_meters, discountable=True, convertable=False, *args, **kwargs):
@@ -9,12 +7,8 @@ class Sell(ABC):
         self.convertable = convertable
         super().__init__(*args, **kwargs)
 
-
     def show_price(self):
-        print(f"price : {self.price_per_meters}\t discount: {self.discountable}\t convertable: {self.convertable}")
-
-
-
+        print(f"Price: {self.price_per_meters}, Discountable: {self.discountable}, Convertable: {self.convertable}")
 
 class Rent(ABC):
     def __init__(self, initial_price, monthly_price, convertable=False, discountable=False, *args, **kwargs):
@@ -23,3 +17,6 @@ class Rent(ABC):
         self.convertable = convertable
         self.discountable = discountable
         super().__init__(*args, **kwargs)
+
+    def show_price(self):
+        print(f"Initial Price: {self.initial_price}, Monthly Price: {self.monthly_price}, Convertable: {self.convertable}, Discountable: {self.discountable}")

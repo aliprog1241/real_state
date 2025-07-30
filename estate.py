@@ -1,49 +1,28 @@
-from abc import abstractmethod, ABC
-
-
-#creat EstateAbstract for apartment and house :
-class EstateAbstract(ABC):
-    def __init__(self, user, area, room_count, built_year, region, address, *args, **kwargs):
-        self.user = user
+class Apartment:
+    def __init__(self, area, address, *args, **kwargs):
         self.area = area
-        self.room_count = room_count
-        self.built_year = built_year
-        self.region = region
         self.address = address
         super().__init__(*args, **kwargs)
 
-    @abstractmethod
     def show_description(self):
-        pass
+        print(f"Apartment - Area: {self.area} sqm, Address: {self.address}")
 
-#creat Apartment class and add some special option
-
-class Apartment(EstateAbstract):
-    def __init__(self, has_elevator, has_parking, floor,  *args, **kwargs):
-        self.has_elevator = has_elevator
-        self.has_parking = has_parking
-        self.floor = floor
+class House:
+    def __init__(self, area, address, floors, *args, **kwargs):
+        self.area = area
+        self.address = address
+        self.floors = floors
         super().__init__(*args, **kwargs)
 
     def show_description(self):
-        print(f"Apartment:  {self.id}\t area :{self.area}")
+        print(f"House - Area: {self.area} sqm, Address: {self.address}, Floors: {self.floors}")
 
-
-#craet house class and add special option
-
-class House(EstateAbstract):
-    def __init__(self, has_yard, floors_count, *args, **kwargs):
-        self.has_yard = has_yard
-        self.floors_count = floors_count
+class Store:
+    def __init__(self, area, address, parking, *args, **kwargs):
+        self.area = area
+        self.address = address
+        self.parking = parking
         super().__init__(*args, **kwargs)
 
     def show_description(self):
-        print(f"House: {self.id}")
-
-
-#I added a shop to see the property listing.
-
-
-class Store(EstateAbstract):
-    def show_description(self):
-        print(f"Store:  {self.id}")
+        print(f"Store - Area: {self.area} sqm, Address: {self.address}, Parking: {self.parking}")

@@ -1,30 +1,41 @@
-from random import choice
-
 from sample import creat_sample
 from advertisment import ApartmentSell, ApartmentRent, HouseSell, HouseRent, StoreSell, StoreRent
 
 class Handler:
-   ADVERTISEMENT_TYPS = {
-      1: ApartmentSell, 2: ApartmentRent,
-      3: HouseSell, 4: HouseRent,
-      5: StoreSell, 6: StoreRent,
+    ADVERTISEMENT_TYPS = {
+        ApartmentSell, ApartmentRent,
+        HouseSell, HouseRent,
+        StoreSell, StoreRent,
+    }
+    SWITCHES = {
+        'r': "get_report",
+        's': "show_all"
+    }
 
-   }
-   SWITCHES = {
+    def get_report(self):
+        for adv in self.ADVERTISEMENT_TYPS:
+            print(f"{adv.__name__}: {adv.manager.count()} ads")
 
-      'r':"get_report",
-      's':"show_all"
-   }
+    def show_all(self):
+        for adv in self.ADVERTISEMENT_TYPS:
+            print(f"\n{adv.__name__}: {adv.manager.count()} ads")
+            for obj in adv.objects_list:
+                obj.show_detail()
 
-   def run(self):
-      print("hello world!")
-      for key in self.SWITCHES.items():
-         print(f"press {key} for {self.SWITCHES[key]}")
-      choice = input("inter your choice: ")
+    def run(self):
+        print("####################     sample crate     ####################")
+        print("hello yasin")
+        for key, method_name in self.SWITCHES.items():
+            print(f"press {key} for {method_name}")
+        choice = input("enter your choice: ").strip().lower()
 
-#prints information for customer
-if __name__ =="__main__":
-   creat_sample()
-   handler = Handler()
+        if choice in self.SWITCHES:
+            method = getattr(self, self.SWITCHES[choice])
+            method()
+        else:
+            print("Invalid choice!")
 
-   handler.run()
+if __name__ == "__main__":
+    creat_sample()
+    handler = Handler()
+    handler.run()
